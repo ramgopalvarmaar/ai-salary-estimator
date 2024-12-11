@@ -63,7 +63,7 @@ export const POST = async (req) => {
     await waitForFilesActive([uploadedFile]);
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-pro",
+      model: "gemini-1.5-flash",
     });
 
     const generationConfig = {
@@ -100,6 +100,7 @@ export const POST = async (req) => {
       ],
     });
 
+    console.log("calling gemini ai");
     const result = await chatSession.sendMessage("");
 
     await fs.unlink(tempPath);
