@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
 import ParticlesBackground from "./ParticlesBackground";
+import { Analytics } from "@vercel/analytics/react"
 
 export default function Home() {
   const [file, setFile] = useState(null);
@@ -50,6 +51,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-gradient-to-r from-gray-900 via-purple-800 to-gray-900 text-white">
       {/* Add TSParticles Background */}
       {/*<ParticlesBackground />*/}
+      <Analytics/>
 
       <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl w-full bg-gray-800 rounded-lg shadow-lg p-8">
