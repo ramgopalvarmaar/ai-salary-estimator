@@ -6,7 +6,7 @@ import { loadFull } from "tsparticles";
 
 export default function ParticlesBackground() {
   const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine); // Load tsparticles fully to avoid conflicts
+    await loadFull(engine); // Load the tsparticles engine
   }, []);
 
   const particlesOptions = {
@@ -16,7 +16,7 @@ export default function ParticlesBackground() {
     },
     particles: {
       number: {
-        value: 60,
+        value: 100,
         density: {
           enable: true,
           area: 800,
@@ -25,25 +25,28 @@ export default function ParticlesBackground() {
       color: {
         value: "#ffffff",
       },
-      links: {
-        enable: true,
-        color: "#ffffff",
-        distance: 150,
-        opacity: 0.4,
-        width: 1,
+      shape: {
+        type: "circle",
+      },
+      opacity: {
+        value: 0.5,
+      },
+      size: {
+        value: { min: 1, max: 5 },
       },
       move: {
         enable: true,
         speed: 2,
-        direction: "none",
-        random: false,
-        straight: false,
         outModes: {
           default: "out",
         },
       },
-      size: {
-        value: { min: 2, max: 5 },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.4,
+        width: 1,
       },
     },
     interactivity: {
@@ -52,13 +55,21 @@ export default function ParticlesBackground() {
           enable: true,
           mode: "repulse",
         },
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
       },
       modes: {
         repulse: {
           distance: 100,
         },
+        push: {
+          quantity: 4,
+        },
       },
     },
+    detectRetina: true,
   };
 
   return <Particles id="tsparticles" init={particlesInit} options={particlesOptions} />;
