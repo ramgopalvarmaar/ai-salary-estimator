@@ -28,13 +28,14 @@ export function buildMetadata({
       description: pageDescription,
       url,
       siteName: siteConfig.name,
+      locale: "en_US",
       type,
       images: [
         {
           url: absoluteUrl(siteConfig.ogImage),
           width: 1200,
           height: 630,
-          alt: `${pageTitle} preview`,
+          alt: `${pageTitle} – ${siteConfig.name}`,
         },
       ],
     },
@@ -71,6 +72,7 @@ export function buildWebApplicationSchema(page) {
     url: absoluteUrl(page.path),
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -78,32 +80,45 @@ export function buildWebApplicationSchema(page) {
     },
     featureList: [
       "AI salary calculator",
+      "Real-time web salary research",
       "Salary range benchmark",
       "Compensation confidence score",
+      "Resume-aware analysis",
       "Negotiation report preview",
       "Shareable market worth summary",
+      "Data source citations",
     ],
+    creator: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
   };
 }
 
 export function buildBreadcrumbSchema(page) {
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: absoluteUrl("/"),
+    },
+  ];
+
+  if (page.path !== "/") {
+    items.push({
+      "@type": "ListItem",
+      position: 2,
+      name: page.heroTitle,
+      item: absoluteUrl(page.path),
+    });
+  }
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: absoluteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: page.heroTitle,
-        item: absoluteUrl(page.path),
-      },
-    ],
+    itemListElement: items,
   };
 }
 
@@ -113,5 +128,31 @@ export function buildOrganizationSchema() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: absoluteUrl("/favicon.svg"),
+    sameAs: [],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      url: absoluteUrl("/"),
+      availableLanguage: "English",
+    },
+  };
+}
+
+export function buildHowToSchema(page) {
+  if (!page.howItWorks) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use the ${page.heroTitle}`,
+    description: page.description,
+    totalTime: "PT2M",
+    step: page.howItWorks.map((item, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: item.step,
+      text: item.description,
+    })),
   };
 }
