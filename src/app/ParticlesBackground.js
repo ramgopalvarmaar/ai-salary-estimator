@@ -1,12 +1,18 @@
 "use client";
 
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 export default function ParticlesBackground() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine); // Load the tsparticles engine
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
   }, []);
 
   const particlesOptions = {
@@ -72,5 +78,7 @@ export default function ParticlesBackground() {
     detectRetina: true,
   };
 
-  return <Particles id="tsparticles" init={particlesInit} options={particlesOptions} />;
+  return init ? (
+    <Particles id="tsparticles" options={particlesOptions} />
+  ) : null;
 }

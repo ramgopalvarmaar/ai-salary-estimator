@@ -4,13 +4,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "ai-blue": "#1E3A8A",
-        "ai-purple": "#7C3AED",
-      },
-      animation: {
-        pulseSlow: "pulse 2s linear infinite",
+        accent: {
+          DEFAULT: "#1a73e8",
+          hover: "#1557b0",
+          light: "#e8f0fe",
+          50: "#f0f7ff",
+        },
+        goog: {
+          gray: {
+            50: "#f8f9fa",
+            100: "#f1f3f4",
+            200: "#e8eaed",
+            300: "#dadce0",
+            400: "#bdc1c6",
+            500: "#9aa0a6",
+            600: "#80868b",
+            700: "#5f6368",
+            800: "#3c4043",
+            900: "#202124",
+          },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

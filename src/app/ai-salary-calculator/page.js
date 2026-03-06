@@ -2,7 +2,7 @@ import LandingPage from "@/components/LandingPage";
 import { landingPages } from "@/lib/landingPages";
 import { buildMetadata } from "@/lib/seo";
 
-const page = landingPages.home;
+const page = landingPages.calculator;
 
 export const metadata = buildMetadata({
   title: page.title,
@@ -11,6 +11,6 @@ export const metadata = buildMetadata({
   keywords: [page.primaryKeyword, ...page.secondaryKeywords],
 });
 
-export default function Home() {
+export default function AiSalaryCalculatorPage() {
   return <LandingPage page={page} />;
 }
