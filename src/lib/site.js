@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "Salary Estimator",
   description:
     "AI salary calculator that researches real-time web data from Glassdoor, Levels.fyi, and other sources to estimate your market worth for any role and location.",
-  url: "https://ai-powered-salary-estimator.vercel.app",
+  url: "https://ai-salary-calculator.vercel.app",
   creator: "AI Salary Calculator",
   ogImage: "/opengraph-image",
   premiumReportBasePriceUsd: 1,
