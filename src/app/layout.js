@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
@@ -9,8 +9,15 @@ const inter = Inter({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const viewport = {
-  themeColor: "#1a73e8",
+  themeColor: "#6366f1",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -110,7 +117,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="google-site-verification" content="pOwlUFG5xtAkqu4wLA8JsrzQA3Sb8NRmjsqstsuPDoE" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"

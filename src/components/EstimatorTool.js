@@ -63,9 +63,6 @@ function buildDownloadText(report, premiumCtaHref) {
   ].join("\n");
 }
 
-const inputClass =
-  "w-full rounded-lg border border-goog-gray-300 bg-white px-3.5 py-2.5 text-sm text-goog-gray-900 outline-none transition placeholder:text-goog-gray-400 focus:border-accent focus:ring-1 focus:ring-accent";
-
 export default function EstimatorTool({ page, pricing }) {
   const [inputs, setInputs] = useState(() => createDefaultInputs(pricing.currency));
   const [file, setFile] = useState(null);
@@ -249,12 +246,15 @@ export default function EstimatorTool({ page, pricing }) {
   return (
     <div>
       {/* Hero text */}
-      <div className="mb-8 max-w-2xl">
-        <p className="text-sm font-medium text-accent">{page.eyebrow}</p>
-        <h1 className="mt-2 text-3xl font-medium tracking-tight text-goog-gray-900 sm:text-4xl">
+      <div className="mb-12 max-w-2xl animate-fade-in">
+        <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+          {page.eyebrow}
+        </div>
+        <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-goog-gray-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
           {page.heroTitle}
         </h1>
-        <p className="mt-3 text-base leading-7 text-goog-gray-700">
+        <p className="mt-5 text-lg leading-relaxed text-goog-gray-600">
           {page.intro}
         </p>
       </div>
@@ -264,18 +264,18 @@ export default function EstimatorTool({ page, pricing }) {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl border border-goog-gray-200 bg-white p-6 shadow-sm"
+          className="glass-card-solid animate-slide-up p-7 sm:p-8"
         >
-          <h2 className="text-lg font-medium text-goog-gray-900">
+          <h2 className="font-display text-xl font-semibold text-goog-gray-900">
             Enter your details
           </h2>
-          <p className="mt-1 text-sm text-goog-gray-700">
+          <p className="mt-1.5 text-sm text-goog-gray-500">
             The AI researches live salary data from the web for your specific role and location.
           </p>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-7 space-y-5">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="role">
+              <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="role">
                 Role
               </label>
               <input
@@ -285,13 +285,13 @@ export default function EstimatorTool({ page, pricing }) {
                 value={inputs.role}
                 onChange={updateField}
                 placeholder="e.g. Software Engineer, Data Analyst"
-                className={inputClass}
+                className="input-premium"
               />
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="city">
+                <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="city">
                   City
                 </label>
                 <input
@@ -301,11 +301,11 @@ export default function EstimatorTool({ page, pricing }) {
                   value={inputs.city}
                   onChange={updateField}
                   placeholder="e.g. San Francisco, London"
-                  className={inputClass}
+                  className="input-premium"
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="yearsExperience">
+                <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="yearsExperience">
                   Years of experience
                 </label>
                 <input
@@ -317,14 +317,14 @@ export default function EstimatorTool({ page, pricing }) {
                   value={inputs.yearsExperience}
                   onChange={updateField}
                   placeholder="e.g. 5"
-                  className={inputClass}
+                  className="input-premium"
                 />
               </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="currency">
+                <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="currency">
                   Currency
                 </label>
                 <select
@@ -332,7 +332,7 @@ export default function EstimatorTool({ page, pricing }) {
                   name="currency"
                   value={inputs.currency}
                   onChange={updateField}
-                  className={inputClass}
+                  className="input-premium"
                 >
                   {currencyOptions.map((currencyCode) => (
                     <option key={currencyCode} value={currencyCode}>
@@ -342,7 +342,7 @@ export default function EstimatorTool({ page, pricing }) {
                 </select>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="currentSalary">
+                <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="currentSalary">
                   Current salary
                 </label>
                 <input
@@ -354,11 +354,11 @@ export default function EstimatorTool({ page, pricing }) {
                   value={inputs.currentSalary}
                   onChange={updateField}
                   placeholder="Optional"
-                  className={inputClass}
+                  className="input-premium"
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="targetSalary">
+                <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="targetSalary">
                   Target salary
                 </label>
                 <input
@@ -370,18 +370,18 @@ export default function EstimatorTool({ page, pricing }) {
                   value={inputs.targetSalary}
                   onChange={updateField}
                   placeholder="Optional"
-                  className={inputClass}
+                  className="input-premium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-goog-gray-800" htmlFor="file-upload">
+              <label className="mb-2 block text-sm font-medium text-goog-gray-700" htmlFor="file-upload">
                 Resume
               </label>
               <label
                 htmlFor="file-upload"
-                className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-goog-gray-300 bg-goog-gray-50 px-4 py-4 text-center text-sm text-goog-gray-700 transition-colors hover:border-accent hover:bg-accent-50"
+                className="flex cursor-pointer items-center justify-center gap-2.5 rounded-xl border-2 border-dashed border-goog-gray-300 bg-goog-gray-50/50 px-4 py-5 text-center text-sm text-goog-gray-500 transition-all duration-200 hover:border-accent hover:bg-accent-50/50 hover:text-accent"
               >
                 <CloudArrowUpIcon className="h-5 w-5" />
                 {file ? file.name : "Upload PDF, TXT, DOC, or DOCX (optional)"}
@@ -398,44 +398,80 @@ export default function EstimatorTool({ page, pricing }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-goog-gray-300 disabled:text-goog-gray-500"
+              className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:hover:translate-y-0"
             >
-              {loading ? "Researching market data..." : "Get salary estimate"}
+              {loading ? (
+                <span className="flex items-center gap-2.5">
+                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  Researching market data...
+                </span>
+              ) : (
+                "Get salary estimate"
+              )}
             </button>
           </div>
 
           {error ? (
-            <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+            <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+              <svg className="mt-0.5 h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+              </svg>
+              {error}
+            </div>
           ) : null}
           {statusMessage ? (
-            <p className="mt-4 rounded-lg bg-accent-light px-3 py-2 text-sm text-accent">{statusMessage}</p>
+            <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-accent-50 px-4 py-3 text-sm text-accent">
+              <svg className="mt-0.5 h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+              </svg>
+              {statusMessage}
+            </div>
           ) : null}
         </form>
 
         {/* Results panel */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Free estimate results */}
-          <div className="rounded-xl border border-goog-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="text-lg font-medium text-goog-gray-900">
-              Your estimate
-            </h2>
+          <div className="glass-card-solid animate-slide-up p-7 sm:p-8">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-50 text-accent">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+              </div>
+              <h2 className="font-display text-xl font-semibold text-goog-gray-900">
+                Your estimate
+              </h2>
+            </div>
 
             {(loading || thoughts) && !report ? (
-              <div className="mt-5 rounded-lg bg-goog-gray-900 p-4 font-mono text-xs text-goog-gray-300 shadow-inner flex flex-col h-[400px]">
-                <div className="flex items-center gap-2 mb-3 border-b border-goog-gray-700 pb-2 text-accent-light">
-                  <div className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                  <span>{statusMessage || "Initializing..."}</span>
+              <div className="mt-6 overflow-hidden rounded-2xl bg-goog-gray-900 shadow-xl">
+                <div className="flex items-center gap-2.5 border-b border-white/10 px-5 py-3">
+                  <div className="flex gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-goog-gray-400">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                    {statusMessage || "Initializing..."}
+                  </div>
                 </div>
-                <div className="flex-1 overflow-y-auto whitespace-pre-wrap break-words">
-                  {thoughts}
+                <div className="flex h-[380px] flex-col p-5">
+                  <div className="flex-1 overflow-y-auto font-mono text-xs leading-relaxed text-goog-gray-300">
+                    {thoughts}
+                  </div>
                 </div>
               </div>
             ) : report ? (
-              <div className="mt-5 space-y-5">
+              <div className="mt-6 space-y-6">
                 <div className="grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-lg bg-goog-gray-50 p-4">
-                    <p className="text-xs font-medium text-goog-gray-700">Salary range</p>
-                    <p className="mt-1 text-lg font-semibold text-goog-gray-900">
+                  <div className="rounded-2xl bg-gradient-to-br from-accent-50 to-purple-50 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-accent/70">Salary range</p>
+                    <p className="mt-2 text-lg font-bold text-goog-gray-900">
                       {formatCurrency(
                         report.quickEstimate?.salaryRange?.min,
                         report.quickEstimate?.salaryRange?.currency
@@ -447,59 +483,64 @@ export default function EstimatorTool({ page, pricing }) {
                       )}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-goog-gray-50 p-4">
-                    <p className="text-xs font-medium text-goog-gray-700">Market position</p>
-                    <p className="mt-1 text-lg font-semibold text-goog-gray-900">
+                  <div className="rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600/70">Market position</p>
+                    <p className="mt-2 text-lg font-bold text-goog-gray-900">
                       {report.quickEstimate?.marketPosition || "Needs review"}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-goog-gray-50 p-4">
-                    <p className="text-xs font-medium text-goog-gray-700">Confidence</p>
-                    <p className="mt-1 text-lg font-semibold text-goog-gray-900">
+                  <div className="rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-amber-600/70">Confidence</p>
+                    <p className="mt-2 text-lg font-bold text-goog-gray-900">
                       {report.quickEstimate?.confidenceLabel || "Estimated"}
                     </p>
                   </div>
                 </div>
 
-                <div>
-                  <h3 className="text-sm font-medium text-goog-gray-900">Summary</h3>
-                  <p className="mt-1 text-sm leading-6 text-goog-gray-800">
+                <div className="rounded-2xl border border-goog-gray-200/80 p-5">
+                  <h3 className="text-sm font-semibold text-goog-gray-900">Summary</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-goog-gray-600">
                     {report.quickEstimate?.summary}
                   </p>
                 </div>
 
                 {(report.factors || []).length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-goog-gray-900">Key factors</h3>
-                    <ul className="mt-2 space-y-1.5">
+                    <h3 className="mb-3 text-sm font-semibold text-goog-gray-900">Key factors</h3>
+                    <div className="space-y-2">
                       {report.factors.map((factor) => (
-                        <li
+                        <div
                           key={factor}
-                          className="rounded-lg bg-goog-gray-50 px-3 py-2 text-sm text-goog-gray-800"
+                          className="flex items-start gap-2.5 rounded-xl bg-goog-gray-50 px-4 py-3 text-sm text-goog-gray-700"
                         >
+                          <span className="mt-0.5 text-accent">
+                            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                            </svg>
+                          </span>
                           {factor}
-                        </li>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
 
                 {(report.growthRoles || []).length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-goog-gray-900">
+                    <h3 className="mb-3 text-sm font-semibold text-goog-gray-900">
                       Higher-paying roles to consider
                     </h3>
-                    <div className="mt-2 space-y-2">
+                    <div className="space-y-3">
                       {report.growthRoles.map((role) => (
                         <div
                           key={`${role.title}-${role.salaryRange}`}
-                          className="rounded-lg border border-goog-gray-200 p-3"
+                          className="rounded-2xl border border-goog-gray-200/80 p-4 transition-all duration-200 hover:border-accent/20 hover:shadow-sm"
                         >
                           <div className="flex items-baseline justify-between gap-2">
-                            <p className="text-sm font-medium text-goog-gray-900">{role.title}</p>
-                            <p className="text-sm font-medium text-accent">{role.salaryRange}</p>
+                            <p className="text-sm font-semibold text-goog-gray-900">{role.title}</p>
+                            <p className="text-sm font-bold text-accent">{role.salaryRange}</p>
                           </div>
-                          <p className="mt-1 text-xs text-goog-gray-700">{role.reason}</p>
+                          <p className="mt-1.5 text-xs leading-relaxed text-goog-gray-500">{role.reason}</p>
                         </div>
                       ))}
                     </div>
@@ -507,9 +548,9 @@ export default function EstimatorTool({ page, pricing }) {
                 )}
 
                 {report.methodology && (
-                  <div className="rounded-lg bg-accent-50 px-4 py-3">
-                    <p className="text-xs font-medium text-accent">How this was researched</p>
-                    <p className="mt-1 text-sm leading-6 text-goog-gray-800">
+                  <div className="rounded-2xl bg-gradient-to-br from-accent-50/80 to-purple-50/80 px-5 py-4">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-accent">How this was researched</p>
+                    <p className="mt-2 text-sm leading-relaxed text-goog-gray-700">
                       {report.methodology}
                     </p>
                   </div>
@@ -517,169 +558,185 @@ export default function EstimatorTool({ page, pricing }) {
 
                 {sources.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-medium text-goog-gray-900">Data sources</h3>
-                    <ul className="mt-2 flex flex-wrap gap-2">
+                    <h3 className="mb-3 text-sm font-semibold text-goog-gray-900">Data sources</h3>
+                    <div className="flex flex-wrap gap-2">
                       {sources.map((source) => (
-                        <li key={source.url}>
-                          <a
-                            href={source.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex rounded-md border border-goog-gray-200 bg-goog-gray-50 px-2.5 py-1 text-xs font-medium text-accent transition-colors hover:bg-accent-50"
-                          >
-                            {source.title}
-                          </a>
-                        </li>
+                        <a
+                          key={source.url}
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex rounded-full border border-goog-gray-200 bg-white px-3.5 py-1.5 text-xs font-medium text-goog-gray-600 shadow-sm transition-all duration-200 hover:border-accent/30 hover:text-accent hover:shadow-md"
+                        >
+                          {source.title}
+                        </a>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-2 border-t border-goog-gray-200 pt-4">
+                <div className="flex flex-wrap gap-2.5 border-t border-goog-gray-200/80 pt-5">
                   <button
                     type="button"
                     onClick={handleCopyShare}
-                    className="rounded-lg border border-goog-gray-300 px-3 py-1.5 text-sm font-medium text-goog-gray-800 transition-colors hover:bg-goog-gray-50"
+                    className="btn-secondary text-xs"
                   >
                     Copy share text
                   </button>
                   <button
                     type="button"
                     onClick={handleNativeShare}
-                    className="rounded-lg border border-goog-gray-300 px-3 py-1.5 text-sm font-medium text-goog-gray-800 transition-colors hover:bg-goog-gray-50"
+                    className="btn-secondary text-xs"
                   >
                     Share
                   </button>
                   <button
                     type="button"
                     onClick={handleDownload}
-                    className="rounded-lg border border-goog-gray-300 px-3 py-1.5 text-sm font-medium text-goog-gray-800 transition-colors hover:bg-goog-gray-50"
+                    className="btn-secondary text-xs"
                   >
                     Download
                   </button>
                 </div>
               </div>
             ) : (
-              <p className="mt-3 text-sm text-goog-gray-700">
-                Fill in the form and click &ldquo;Get salary estimate.&rdquo; The AI
-                will research current salary data from the web before generating
-                your personalized report.
-              </p>
+              <div className="mt-6 flex flex-col items-center rounded-2xl border-2 border-dashed border-goog-gray-200 px-6 py-12 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-goog-gray-100 text-goog-gray-400">
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                  </svg>
+                </div>
+                <p className="mt-4 text-sm font-medium text-goog-gray-500">
+                  Your salary estimate will appear here
+                </p>
+                <p className="mt-1.5 max-w-xs text-xs text-goog-gray-400">
+                  Fill in the form and click &ldquo;Get salary estimate.&rdquo; The AI
+                  will research current salary data from the web.
+                </p>
+              </div>
             )}
           </div>
 
           {/* Premium upsell */}
           <div
             id="premium-offer"
-            className="rounded-xl border-2 border-accent bg-accent-50 p-6 shadow-sm"
+            className="shimmer-border relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent-50 via-white to-purple-50 p-7 shadow-glow sm:p-8"
           >
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="text-xs font-medium uppercase tracking-wider text-accent">
-                Premium report
-              </p>
-              <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-goog-gray-800">
-                One-time payment
-              </span>
-              <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-goog-gray-800">
-                Tailored to your profile
-              </span>
-            </div>
-            <h2 className="mt-3 text-xl font-semibold text-goog-gray-900">
-              {premiumHeadline}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-goog-gray-800">
-              {premiumIntro}
-            </p>
+            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-accent/5 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-purple-400/5 blur-3xl" />
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-lg bg-white p-4">
-                <p className="text-xs font-medium text-goog-gray-700">Pay-gap analysis</p>
-                {premiumUnderpaidScore ? (
-                  <p className="mt-1 text-2xl font-semibold text-goog-gray-900">
-                    {premiumUnderpaidScore}
-                    <span className="text-sm font-normal text-goog-gray-700">/100</span>
-                  </p>
-                ) : (
-                  <p className="mt-1 text-xl font-semibold text-goog-gray-900">
-                    Personalized breakdown
-                  </p>
-                )}
-                <p className="mt-2 text-xs leading-5 text-goog-gray-700">
-                  See whether you are under market and what is pulling your compensation up or down.
-                </p>
-                <div className="mt-3 h-1.5 rounded-full bg-goog-gray-200">
-                  <div
-                    className="h-1.5 rounded-full bg-accent"
-                    style={{
-                      width: premiumUnderpaidScore ? `${premiumUnderpaidScore}%` : "68%",
-                      opacity: premiumUnderpaidScore ? 1 : 0.45,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="rounded-lg bg-white p-4">
-                <p className="text-xs font-medium text-goog-gray-700">Negotiation upside</p>
-                <p className="mt-1 text-2xl font-semibold text-goog-gray-900">
-                  {premiumUpsideAmount
-                    ? formatCurrency(premiumUpsideAmount, premiumCurrency)
-                    : "Best salary ask"}
-                </p>
-                <p className="mt-2 text-xs leading-5 text-goog-gray-700">
-                  {premiumUpsideAmount
-                    ? "Estimated additional earnings backed by market data."
-                    : "Get the salary band, compensation levers, and ask strategy to use in your next conversation."}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5">
-              <h3 className="text-sm font-medium text-goog-gray-900">What you unlock</h3>
-              <ul className="mt-2 space-y-2 text-sm text-goog-gray-800">
-                {premiumHighlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-accent">&#10003;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-5 rounded-lg bg-white p-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-sm font-medium text-goog-gray-900">Negotiation preview</h3>
-                <span className="rounded-full bg-accent-light px-2.5 py-1 text-xs font-medium text-accent">
-                  Includes full script + email draft
+            <div className="relative">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-accent to-purple-600 px-3.5 py-1 text-xs font-semibold text-white shadow-sm">
+                  <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clipRule="evenodd" />
+                  </svg>
+                  Premium report
+                </span>
+                <span className="rounded-full border border-goog-gray-200 bg-white px-3 py-1 text-xs font-medium text-goog-gray-600">
+                  One-time payment
                 </span>
               </div>
-              <div className="relative mt-2">
-                <p className="max-h-24 overflow-hidden text-sm leading-6 text-goog-gray-800">
-                  {premiumNegotiationPitch}
-                </p>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
-              </div>
-              <p className="mt-3 rounded-lg bg-accent-light px-3 py-2 text-sm text-accent">
-                {premiumEmailSnippet}
-              </p>
-            </div>
 
-            <div className="mt-5 rounded-xl bg-goog-gray-900 p-4 text-white">
-              <p className="text-sm font-medium">
-                Best used before a raise review, offer call, or negotiation loop.
+              <h2 className="mt-5 font-display text-2xl font-semibold text-goog-gray-900">
+                {premiumHeadline}
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-goog-gray-600">
+                {premiumIntro}
               </p>
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-2xl font-semibold">{pricing.premiumReportPrice}</p>
-                  <p className="text-xs text-goog-gray-300">One-time payment. No subscription.</p>
+
+              <div className="mt-7 grid gap-5 sm:grid-cols-2">
+                <div className="rounded-2xl border border-goog-gray-200/80 bg-white p-5 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-goog-gray-500">Pay-gap analysis</p>
+                  {premiumUnderpaidScore ? (
+                    <p className="mt-2 text-3xl font-bold text-goog-gray-900">
+                      {premiumUnderpaidScore}
+                      <span className="text-base font-normal text-goog-gray-400">/100</span>
+                    </p>
+                  ) : (
+                    <p className="mt-2 text-xl font-bold text-goog-gray-900">
+                      Personalized breakdown
+                    </p>
+                  )}
+                  <p className="mt-3 text-xs leading-relaxed text-goog-gray-500">
+                    See whether you are under market and what is pulling your compensation up or down.
+                  </p>
+                  <div className="mt-4 h-2 overflow-hidden rounded-full bg-goog-gray-100">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-700"
+                      style={{
+                        width: premiumUnderpaidScore ? `${premiumUnderpaidScore}%` : "68%",
+                        opacity: premiumUnderpaidScore ? 1 : 0.45,
+                      }}
+                    />
+                  </div>
                 </div>
-                <Link
-                  href={premiumCtaHref}
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover sm:w-auto"
-                >
-                  Unlock premium report
-                </Link>
+                <div className="rounded-2xl border border-goog-gray-200/80 bg-white p-5 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-goog-gray-500">Negotiation upside</p>
+                  <p className="mt-2 text-3xl font-bold text-goog-gray-900">
+                    {premiumUpsideAmount
+                      ? formatCurrency(premiumUpsideAmount, premiumCurrency)
+                      : "Best salary ask"}
+                  </p>
+                  <p className="mt-3 text-xs leading-relaxed text-goog-gray-500">
+                    {premiumUpsideAmount
+                      ? "Estimated additional earnings backed by market data."
+                      : "Get the salary band, compensation levers, and ask strategy to use in your next conversation."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-7">
+                <h3 className="text-sm font-semibold text-goog-gray-900">What you unlock</h3>
+                <div className="mt-3 space-y-2.5">
+                  {premiumHighlights.map((item) => (
+                    <div key={item} className="flex items-start gap-2.5 text-sm text-goog-gray-700">
+                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent text-xs text-white">&#10003;</span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-7 rounded-2xl border border-goog-gray-200/80 bg-white p-5 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-goog-gray-900">Negotiation preview</h3>
+                  <span className="rounded-full bg-accent-50 px-3 py-1 text-xs font-medium text-accent">
+                    Includes full script + email draft
+                  </span>
+                </div>
+                <div className="relative mt-3">
+                  <p className="max-h-24 overflow-hidden text-sm leading-relaxed text-goog-gray-600">
+                    {premiumNegotiationPitch}
+                  </p>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
+                </div>
+                <div className="mt-4 rounded-xl bg-accent-50 px-4 py-3 text-sm text-accent">
+                  {premiumEmailSnippet}
+                </div>
+              </div>
+
+              <div className="mt-7 overflow-hidden rounded-2xl premium-gradient p-6 text-white">
+                <p className="text-sm font-medium text-white/80">
+                  Best used before a raise review, offer call, or negotiation loop.
+                </p>
+                <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-3xl font-bold">{pricing.premiumReportPrice}</p>
+                    <p className="mt-0.5 text-xs text-white/50">One-time payment. No subscription.</p>
+                  </div>
+                  <Link
+                    href={premiumCtaHref}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-goog-gray-900 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 sm:w-auto"
+                  >
+                    Unlock premium report
+                    <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
